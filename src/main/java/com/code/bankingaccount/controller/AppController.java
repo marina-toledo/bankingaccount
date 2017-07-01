@@ -34,11 +34,11 @@ public class AppController {
     }
 
 //    ------------------------------
-//    Requests vindo da pagina INDEX
+//    Requests vindo da pagina HOME
 //    ------------------------------
     @RequestMapping("/")
     public String init() {
-        return "index";
+        return "home";
     }
 
     @RequestMapping("/enviaSenhaPorEmail")
