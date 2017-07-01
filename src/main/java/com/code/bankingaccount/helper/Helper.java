@@ -1,4 +1,4 @@
-package com.code.bankingaccount;
+package com.code.bankingaccount.helper;
 
 import java.security.SecureRandom;
 import java.math.BigInteger;

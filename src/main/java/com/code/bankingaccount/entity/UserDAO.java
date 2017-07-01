@@ -1,4 +1,4 @@
-package com.code.bankingaccount;
+package com.code.bankingaccount.entity;
 
 import org.springframework.stereotype.Repository;
 import java.util.List;

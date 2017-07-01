@@ -1,4 +1,4 @@
-package com.code.bankingaccount;
+package com.code.bankingaccount.email;
 
 //import com.google.api.client.util.Base64;
 //import com.google.api.services.gmail.Gmail;
