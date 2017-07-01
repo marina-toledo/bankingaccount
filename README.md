@@ -1,4 +1,4 @@
-Abertura de Conta Bancária
+**Abertura de Conta Bancária**
 
 Páginas:
 1) Home
@@ -7,7 +7,7 @@ Páginas:
 4) Menu final
 
 
-Home
+**Home**
 
 A partir da Home é possível tomar as seguintes direções:
 1) Entrar e continuar com a abertura de conta

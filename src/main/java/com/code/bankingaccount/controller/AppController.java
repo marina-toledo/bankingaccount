@@ -1,8 +1,9 @@
 package com.code.bankingaccount.controller;
 
-import com.code.bankingaccount.helper.Helper;
+import com.code.bankingaccount.email.EmailService;
 import com.code.bankingaccount.entity.User;
 import com.code.bankingaccount.entity.UserDAO;
+import com.code.bankingaccount.helper.Helper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.List;
 import java.util.logging.Logger;
 
 import static javax.servlet.http.HttpServletResponse.SC_OK;
@@ -27,6 +27,9 @@ public class AppController {
 
     @Autowired
     UserDAO dao;
+
+    @Autowired
+    EmailService service;
 
     @RequestMapping("/erro") //TODO
     public String erro(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -43,18 +46,13 @@ public class AppController {
 
     @RequestMapping("/enviaSenhaPorEmail")
     private void enviaSenhaPorEmail(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        // TODO:: implementar enviar senha por email
-//        String senha = request.getParameter("senha");
-//        User u = new User(email, senha);
+        Logger.getAnonymousLogger().info("Enviando senha por email.");
+
+//        // TODO:: apagar, codigo temporario enquanto o BD ainda nao estah completo
+//        User u = new User(request.getParameter("email"), "senha");
 //        dao.save(u);
-        List<User> emails = dao.findByEmail(request.getParameter("email"));
 
-        if ( emails==null || emails.size() == 0){
-            Logger.getAnonymousLogger().info("log Erro X");
-            System.out.println("system Erro X");
-            throw new RuntimeException("X");
-        }
-
+        service.sendPasswordEmail( request.getParameter("email") );
     }
 
     @RequestMapping("/cadastrar")

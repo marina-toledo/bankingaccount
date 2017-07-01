@@ -80,7 +80,6 @@ $(document).ready(function () {
             formataMsgErro(msgEnviouSenha);
           })
         ;
-//        return false;
     };
 
 });

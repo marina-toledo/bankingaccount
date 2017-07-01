@@ -5,4 +5,5 @@
 *.iml
 out
 gen
-/target/*
+*.properties
+target/
