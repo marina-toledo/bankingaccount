@@ -30,20 +30,15 @@ $(document).ready(function () {
                     }
                 })
                 .done(function (msg) {
-                    if (msg == "true") {
-                        msgCadastro.text("Cadastro feito! Uma senha temporária foi enviada ao seu e-mail.");
-                        formataMsgSucesso(msgCadastro);
-                    } else {
-                        msgCadastro.text("Erro de cadastro. Tente novamente.");
-                        formataMsgErro(msgCadastro);
-                    }
+                    msgCadastro.text("Cadastro feito! Uma senha temporária foi enviada ao seu e-mail.");
+                    formataMsgSucesso(msgCadastro);
                 })
                 .fail(function() {
                     msgCadastro.text("Erro de cadastro. Tente novamente.");
                     formataMsgErro(msgCadastro);
+                })
                 ;
                 return false;
-            }
-    );
+            });
 
-});
+}); // fecha $(document).ready

@@ -82,4 +82,4 @@ $(document).ready(function () {
         ;
     };
 
-});
+}); // fecha $(document).ready

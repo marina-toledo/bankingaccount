@@ -1,9 +1,9 @@
 package com.code.bankingaccount.controller;
 
-import com.code.bankingaccount.email.EmailService;
 import com.code.bankingaccount.entity.User;
-import com.code.bankingaccount.entity.UserDAO;
+import com.code.bankingaccount.entity.UserRepository;
 import com.code.bankingaccount.helper.Helper;
+import com.code.bankingaccount.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,10 +26,10 @@ import static javax.servlet.http.HttpServletResponse.SC_OK;
 public class AppController {
 
     @Autowired
-    UserDAO dao;
+    UserRepository userRepository;
 
     @Autowired
-    EmailService service;
+    AccountService service;
 
     @RequestMapping("/erro") //TODO
     public String erro(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -50,7 +50,7 @@ public class AppController {
 
 //        // TODO:: apagar, codigo temporario enquanto o BD ainda nao estah completo
 //        User u = new User(request.getParameter("email"), "senha");
-//        dao.save(u);
+//        userRepository.save(u);
 
         service.sendPasswordEmail( request.getParameter("email") );
     }
@@ -78,23 +78,20 @@ public class AppController {
 //    ------------------------------
     @RequestMapping("/submitCadastro")
     private void submitCadastro(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        OutputStream os = response.getOutputStream();
-
         String email = request.getParameter("email");
         String rg = request.getParameter("rg");
         String cpf = request.getParameter("cpf");
         String nomeCompleto = request.getParameter("nomeCompleto");
         String telefone = request.getParameter("telefone");
 
-        String msg = "parameters: " + nomeCompleto + cpf + rg + email + telefone;
-
         String senha = Helper.gerarSenha();
         //Boolean status = Helper.criarUsuario(/* parametros de cadastro aqui*/);
         User u = new User( email, senha, rg, cpf, nomeCompleto, telefone);
-        dao.save(u);
+        userRepository.save(u);
         //msg = status.toString();
-        msg = Boolean.TRUE.toString();
+        String msg = Boolean.TRUE.toString();
 
+        OutputStream os = response.getOutputStream();
         os.write(msg.getBytes());
         os.close();
         os.flush();
