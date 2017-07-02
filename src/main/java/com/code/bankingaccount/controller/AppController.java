@@ -1,8 +1,6 @@
 package com.code.bankingaccount.controller;
 
-import com.code.bankingaccount.entity.User;
 import com.code.bankingaccount.entity.UserRepository;
-import com.code.bankingaccount.helper.Helper;
 import com.code.bankingaccount.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,10 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.logging.Logger;
-
-import static javax.servlet.http.HttpServletResponse.SC_OK;
 
 /**
  *
@@ -59,18 +54,22 @@ public class AppController {
     }
 
     @RequestMapping("/entrar")
-    public void entrar(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String entrar(HttpServletRequest request) throws IOException {
         Logger.getAnonymousLogger().info("Entrando no Internet Banking.");
 
         String usuario = request.getParameter("usuario");
         String senha = request.getParameter("senha");
 
-        if (Helper.autenticar(usuario, senha)) {
-            response.setStatus(SC_OK);
-//            response.sendRedirect("greeting?name=bla");
-            response.sendRedirect("abrir-conta?usuario=" + usuario + "&senha=" + senha);
-        }
-//            response.sendError(SC_UNAUTHORIZED, "   Erro de autenticacao de usuario.");
+//        service.login(usuario, senha);
+//
+//        response.sendRedirect("abrir-conta?usuario=" + usuario + "&senha=" + senha);
+//        return "abrir-conta?usuario=" + usuario + "&senha=" + senha;
+
+//        model.addAttribute(usuario, usuario);
+//        model.addAttribute(senha, senha);
+//        return new ModelAndView("abrir-conta");
+        return "cadastro";
+//        //todo entrar na pagina de abrir conta
     }
 
 //    ------------------------------

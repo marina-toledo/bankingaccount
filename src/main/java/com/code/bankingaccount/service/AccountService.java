@@ -25,6 +25,14 @@ public class AccountService {
     private ValidatorHelper validatorHelper;
 
 
+    public void login(String user, String password){
+        User userEmail = userRepository.findByEmailAndSenha(user, password);
+
+        if ( userEmail == null ){
+            throw new RuntimeException("Login Falhou. Usuário ou senha não válido(s).");
+        }
+    }
+
     /**
      * If the email is valid and it is registered, it sends the password to the email.
      * If not a RunTimeException is thrown (if it is not validated or is not registered)
@@ -32,7 +40,6 @@ public class AccountService {
      * @param emailReceiver
      */
     public void sendPasswordEmail(String emailReceiver) {
-
         validatorHelper.emailIsValid(emailReceiver);
 
         User userEmail = userRepository.findByEmail(emailReceiver);

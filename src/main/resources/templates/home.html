@@ -21,39 +21,39 @@
 <body>
 <div class="container">
 
+    <div class="row">
+        <h2>Internet Banking</h2>
+    </div>
+
     <form id="frmLogin" class="form col-md-12">
-        <div class="row">
-            <h2>Internet Banking</h2>
-        </div>
-
-        <div class="row">
+        <div class="form-group">
             <label for="usuario" class="col-md-1">Usuário: </label>
-            <input type="text" id="usuario" value=""/>
+            <input type="text" id="usuario" placeholder="Email"/>
         </div>
 
-        <div class="row">
+        <div class="form-group">
             <label for="senha" class="col-md-1">Senha: </label>
-            <input type="text" id="senha" value=""/>
+            <input type="password" id="senha" placeholder="senha"/>
         </div>
 
         <div class="row">
             <button id="entrar">Entrar</button>
         </div>
-
-        <div class="row">
-            <div id="msgErroLogin"></div>
-        </div>
-
-        <div class="row">
-            <div data-toggle="modal" data-target="#recuperarSenha">
-                <a href="javascript:limparCamposModalSenha()">Esqueceu a senha?</a>
-            </div>
-        </div>
-
-        <div class="row">
-            <a class="col-md-3" href="cadastrar">Cadastrar</a>
-        </div>
     </form>
+
+    <div class="row">
+        <div data-toggle="modal" data-target="#recuperarSenha">
+            <a href="javascript:limparCamposModalSenha()">Esqueceu a senha?</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <a class="col-md-3" href="cadastrar">Cadastrar</a>
+    </div>
+
+    <div class="row">
+        <div id="msgLogin"></div>
+    </div>
 
     <hr/>
 
