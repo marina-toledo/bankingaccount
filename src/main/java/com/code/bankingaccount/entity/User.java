@@ -1,10 +1,6 @@
 package com.code.bankingaccount.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import java.util.Calendar;
 
 import lombok.Getter;
@@ -20,24 +16,28 @@ public class User {
     @Id
     private Long id;
 
+    @Column(name = "email",unique=true)
     private String email;
 
+    @Column(name = "password")
     private String senha;
 
+    @Column(name = "rg",unique=true)
     private String rg;
 
+    @Column(name = "cpf",unique=true)
     private String cpf;
 
+    @Column(name = "fullname")
     private String nomeCompleto;
 
+    @Column(name = "phonenumber")
     private String telefone;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar dataFinalizacao;
 
-    public User(String email, String senha) {
-        this.email = email;
-        this.senha = senha;
+    private User() {
     }
 
     public User(String email, String senha, String rg, String cpf, String nomeCompleto, String telefone) {

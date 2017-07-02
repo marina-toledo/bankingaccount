@@ -24,3 +24,5 @@ A partir da Home é possível tomar as seguintes direções:
 Consiste de um formulário que deve ser preenchido e um botão para enviar as informações para cadastro.
 O usuário deve preencher corretamente todos os campos para que o cadastro seja feito.
 Caso contrário apenas uma mensagem informando as correções necessárias para o preenchimento aparece.
+- Ao cadastrar o sistema salva um novo usuario com as informações dadas pelo usuário + uma senha gerada pelo sistema
+- Após isso, um email de confirmação de cadastro e informação da senha gerada é enviado ao usuário

@@ -41,6 +41,7 @@ public class AppController {
 //    ------------------------------
     @RequestMapping("/")
     public String init() {
+        Logger.getAnonymousLogger().info("Tela Inicial.");
         return "home";
     }
 
@@ -48,20 +49,19 @@ public class AppController {
     private void enviaSenhaPorEmail(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Logger.getAnonymousLogger().info("Enviando senha por email.");
 
-//        // TODO:: apagar, codigo temporario enquanto o BD ainda nao estah completo
-//        User u = new User(request.getParameter("email"), "senha");
-//        userRepository.save(u);
-
         service.sendPasswordEmail( request.getParameter("email") );
     }
 
     @RequestMapping("/cadastrar")
     public String cadastrar(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Logger.getAnonymousLogger().info("Indo para a tela de cadastro.");
         return "cadastro";
     }
 
     @RequestMapping("/entrar")
     public void entrar(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Logger.getAnonymousLogger().info("Entrando no Internet Banking.");
+
         String usuario = request.getParameter("usuario");
         String senha = request.getParameter("senha");
 
@@ -78,23 +78,15 @@ public class AppController {
 //    ------------------------------
     @RequestMapping("/submitCadastro")
     private void submitCadastro(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Logger.getAnonymousLogger().info("Registrando novo usuário.");
+
         String email = request.getParameter("email");
         String rg = request.getParameter("rg");
         String cpf = request.getParameter("cpf");
         String nomeCompleto = request.getParameter("nomeCompleto");
         String telefone = request.getParameter("telefone");
 
-        String senha = Helper.gerarSenha();
-        //Boolean status = Helper.criarUsuario(/* parametros de cadastro aqui*/);
-        User u = new User( email, senha, rg, cpf, nomeCompleto, telefone);
-        userRepository.save(u);
-        //msg = status.toString();
-        String msg = Boolean.TRUE.toString();
-
-        OutputStream os = response.getOutputStream();
-        os.write(msg.getBytes());
-        os.close();
-        os.flush();
+        service.registerUser(email, rg, cpf, nomeCompleto, telefone);
     }
 
 //    ------------------------------
@@ -102,6 +94,8 @@ public class AppController {
 //    ------------------------------
     @RequestMapping("/abrir-conta")
     public String abrir(@RequestParam(value = "usuario") String usuario, @RequestParam(value = "senha") String senha, Model model) {
+        Logger.getAnonymousLogger().info("Abrindo conta bancária.");
+
         model.addAttribute("usuario", usuario);
         model.addAttribute("senha", senha);
         return "abrir-conta";
@@ -112,6 +106,8 @@ public class AppController {
 //    ------------------------------
     @RequestMapping("/menuFinal")
     public String irMenuFinal() {
+        Logger.getAnonymousLogger().info("Indo para o menu final.");
+
 //    public String irMenuFinal(@RequestParam(value="usuario") String usuario, @RequestParam(value="senha") String senha, Model model) {
         return "menuFinal";
     }
