@@ -86,8 +86,7 @@ public class AppController {
         String nomeCompleto = request.getParameter("nomeCompleto");
         String telefone = request.getParameter("telefone");
 
-        String msg = "parameters: "
-                + nomeCompleto + cpf + rg + email + telefone;
+        String msg = "parameters: " + nomeCompleto + cpf + rg + email + telefone;
 
         String senha = Helper.gerarSenha();
         //Boolean status = Helper.criarUsuario(/* parametros de cadastro aqui*/);

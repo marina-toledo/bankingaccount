@@ -17,3 +17,10 @@ A partir da Home é possível tomar as seguintes direções:
 - Ao clicar no botão, se o email é valido é feito a tentativa de enviar a senha por email, se não uma msg de erro aparece na tela
 3) Fazer o primeiro cadastro necessário antes de abrir a conta
 
+
+
+**Cadastro**
+
+Consiste de um formulário que deve ser preenchido e um botão para enviar as informações para cadastro.
+O usuário deve preencher corretamente todos os campos para que o cadastro seja feito.
+Caso contrário apenas uma mensagem informando as correções necessárias para o preenchimento aparece.

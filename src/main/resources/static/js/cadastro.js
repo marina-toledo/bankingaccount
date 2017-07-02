@@ -1,49 +1,47 @@
 $(document).ready(function () {
 
+    // validar campos sequencialmente, submeter form somente se todos os campos forem validos
     $('#frmCadastro').submit(
-            function () {
+            function (event) {
                 var msgCadastro = $('#msgCadastro');
 
-                var email = $('#email');
-                if( $('#email').val().length > 0 && emailEhValido(email) ){
-                    $('#cpf').val("E-mail válido.");
-                }else{
-                    $('#cpf').val("E-mail inválido.");
+                var nomeCompleto = $('#nomeCompleto').val();
+                var cpf = $('#cpf').val();
+                var rg = $('#rg').val();
+                var email = $('#email').val();
+                var telefone = $('#telefone').val();
+
+                if( !nomeCompletoEhValido(nomeCompleto) || !cpfEhValido(cpf) || !rgEhValido(rg)
+                    || !emailEhValido(email) || !telefoneEhValido(telefone)){
+                    msgCadastro.text("Campo(s) inválido(s).");
+                    formataMsgErro(msgCadastro);
+                    event.preventDefault();
+                    return false;
                 }
 
-                var jqxhr = $.ajax({
+                $.ajax({
                     url: "submitCadastro",
-                    data: {nomeCompleto: $('#nomeCompleto').val(),
-                        cpf: $('#cpf').val(),
-                        rg: $('#rg').val(),
-                        email: $('#email').val(),
-                        telefone: $('#telefone').val()}
+                    data: {
+                        nomeCompleto: nomeCompleto,
+                        cpf: cpf,
+                        rg: rg,
+                        email: email,
+                        telefone: telefone
+                    }
                 })
-                        .done(function (msg) {
-                            if (msg == "true") {
-                                msgCadastro.text("Uma senha temporária foi enviada ao seu e-mail.");
-                                msgCadastro.addClass("msgSucesso");
-                            } else {
-                                msgCadastro.text("Erro de cadastro.");
-                                msgCadastro.addClass("msgErro");
-                            }
-
-                        })
-
-//                        .fail(function (msg) {
-//                            msgCadastro.text("Erro de cadastro.");
-//                            msgCadastro.addClass("msgErro");
-//                        })
-
-                        .always(function (msg) {
-                            function redireciona() {
-                                location.href = "/";
-                            }
-
-                            setTimeout(redireciona, 3000);
-                        })
-                        ;
-
+                .done(function (msg) {
+                    if (msg == "true") {
+                        msgCadastro.text("Cadastro feito! Uma senha temporária foi enviada ao seu e-mail.");
+                        formataMsgSucesso(msgCadastro);
+                    } else {
+                        msgCadastro.text("Erro de cadastro. Tente novamente.");
+                        formataMsgErro(msgCadastro);
+                    }
+                })
+                .fail(function() {
+                    msgCadastro.text("Erro de cadastro. Tente novamente.");
+                    formataMsgErro(msgCadastro);
+                ;
                 return false;
             }
     );
