@@ -69,7 +69,7 @@ public class AppController {
 //        model.addAttribute(senha, senha);
 //        return new ModelAndView("abrir-conta");
         return "cadastro";
-//        //todo entrar na pagina de abrir conta
+//        //todo entrar na pagina de abrir conta, usar Post e Foward de modo a esconder as informacoes necessarias
     }
 
 //    ------------------------------
