@@ -1,12 +1,15 @@
 package com.code.bankingaccount.controller;
 
 import com.code.bankingaccount.entity.UserRepository;
+import com.code.bankingaccount.form.LoginForm;
 import com.code.bankingaccount.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,7 +38,7 @@ public class AppController {
 //    Requests vindo da pagina HOME
 //    ------------------------------
     @RequestMapping("/")
-    public String init() {
+    public String init(@ModelAttribute LoginForm loginForm) {
         Logger.getAnonymousLogger().info("Tela Inicial.");
         return "home";
     }
@@ -53,23 +56,22 @@ public class AppController {
         return "cadastro";
     }
 
-    @RequestMapping("/entrar")
-    public String entrar(HttpServletRequest request) throws IOException {
+    @PostMapping("/")
+    public ModelAndView entrar(LoginForm loginForm) throws IOException {
         Logger.getAnonymousLogger().info("Entrando no Internet Banking.");
 
-        String usuario = request.getParameter("usuario");
-        String senha = request.getParameter("senha");
+        ModelMap model = new ModelMap();
+        try{
+            service.login(loginForm.getUsuario(), loginForm.getSenha());
+        }catch(Exception e){
+            Logger.getAnonymousLogger().info("Exception: " + e);
+            loginForm.setMsgLogin("Usuário ou senha inválido(s).");
+            return new ModelAndView("/home", model);
+        }
 
-//        service.login(usuario, senha);
-//
-//        response.sendRedirect("abrir-conta?usuario=" + usuario + "&senha=" + senha);
-//        return "abrir-conta?usuario=" + usuario + "&senha=" + senha;
-
-//        model.addAttribute(usuario, usuario);
-//        model.addAttribute(senha, senha);
-//        return new ModelAndView("abrir-conta");
-        return "cadastro";
-//        //todo entrar na pagina de abrir conta, usar Post e Foward de modo a esconder as informacoes necessarias
+        model.addAttribute("usuario", loginForm.getUsuario());
+        return new ModelAndView("/abrir-conta", model);
+//        return new ModelAndView("redirect:/", model);
     }
 
 //    ------------------------------
@@ -91,14 +93,15 @@ public class AppController {
 //    ------------------------------
 //    Requests vindo da pagina ABRIR-CONTA
 //    ------------------------------
-    @RequestMapping("/abrir-conta")
-    public String abrir(@RequestParam(value = "usuario") String usuario, @RequestParam(value = "senha") String senha, Model model) {
-        Logger.getAnonymousLogger().info("Abrindo conta bancária.");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("senha", senha);
-        return "abrir-conta";
-    }
+//    @PostMapping("/abrir-conta")
+//    public String abrir( String usuario) {
+//        Logger.getAnonymousLogger().info("Abrindo conta bancária.");
+//
+//        ModelMap model = new ModelMap();
+//
+//        model.addAttribute("usuario", userRepository.findByEmail(usuario));
+//        return "abrir-conta";
+//    }
 
     //    ------------------------------
 //    Requests vindo da pagina MENUFINAL

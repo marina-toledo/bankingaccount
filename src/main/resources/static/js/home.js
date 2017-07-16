@@ -1,34 +1,6 @@
 $(document).ready(function () {
 
 //    ------------------------------
-//    Logar na tela inicial
-//    ------------------------------
-    $('#frmLogin').submit(
-        function () {
-            var msgLogin = $('#msgLogin');
-
-            $.ajax({
-                url: "entrar",
-                data: {
-                    usuario: $('#usuario').val(),
-                    senha: $('#senha').val()
-                }
-            })
-//            .done(function (msg) {
-//                msgLogin.text("Sucesso.");
-//                formataMsgSucesso(msgLogin);
-//            })
-//            .fail(function() {
-//                msgLogin.text("Usuário ou senha inválido.");
-//                formataMsgErro(msgLogin);
-//              })
-            ;
-
-//            return false;
-        }
-    );
-
-//    ------------------------------
 //    Recuperar senha
 //    ------------------------------
     limparCamposModalSenha = function () {
