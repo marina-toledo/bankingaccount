@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -15,149 +16,151 @@
     <!-- <script type="text/javascript" src="js/bootstrap-theme.min.css"></script> -->
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/abrir-conta.js"></script>
+    <script type="text/javascript" src="js/helper.js"></script>
 </head>
 <body>
 <div class="container">
 
-    <form id="frmAbrirConta" class="form col-md-12">
+    <form id="frmAbrirConta" class="form col-md-12" action="#" th:action="@{/}" th:object="${user}" method="post">
 
-    <div id="frmAbrirConta_1" >
-        
-        <h2>Abrir conta</h2>
+        <div id="frmAbrirConta_1">
 
-        <div class="row">
-            <label for="nomeCompleto" class="col-md-1">Nome completo: </label>
-            <input type="text" id="nomeCompleto" value=""/>
-        </div>
-
-        <div class="row">
-            <label for="cpf" class="col-md-1">CPF: </label>
-            <input type="text" id="cpf" value=""/>
-        </div>
-
-        <div class="row">
-            <label for="rg" class="col-md-1">RG: </label>
-            <input type="text" id="rg" value=""/>
-        </div>
-
-        <div class="row">
-            <label for="email" class="col-md-1">E-mail: </label>
-            <input type="text" id="email" value=""/>
-        </div>
-
-        <div class="row">
-            <label for="telefone" class="col-md-1">Telefone: </label>
-            <input type="text" id="telefone" value=""/>
-        </div>
-
-        <div class="row">
-            <label for="senhaIntBank" class="col-md-1">Senha internet banking: </label>
-            <input type="text" id="senhaIntBank" value=""/>
-        </div>
-        <div style="color:red">Colocar comportamento de confirmar senha</div>
-        <div class="row some"> <!-- on change de senha aparece o campo -->
-            <label for="confSenha" class="col-md-1">Confirmar senha: </label>
-            <input type="text" id="confSenha" value=""/>
-        </div>
-    </div> <!-- fim de frmAbrirConta_1 -->
-
-
-    <div id="frmAbrirConta_2" class="some">
-        <div class="row">
-            <h2>Endereço</h2>
+            <h2>Abrir conta</h2>
 
             <div class="row">
-                <label for="cep" class="col-md-1">CEP: </label>
-                <input type="text" id="cep" value=""/>
-            </div>
-            Deixar bloqueado outros campos enquanto cep não for preenchido
-
-            <div class="row">
-                <label for="rua" class="col-md-1">Rua: </label>
-                <input type="text" id="rua" value=""/>
+                <label for="nomeCompleto" class="col-md-1">Nome completo: </label>
+                <input type="text" id="nomeCompleto" value="" th:field="*{nomeCompleto}"/>
             </div>
 
             <div class="row">
-                <label for="numero" class="col-md-1">Número: </label>
-                <input type="text" id="numero" value=""/>
+                <label for="cpf" class="col-md-1">CPF: </label>
+                <input type="text" id="cpf" value="" th:field="*{cpf}"/>
             </div>
 
             <div class="row">
-                <label for="complemento" class="col-md-1">Complemento: </label>
-                <input type="text" id="complemento" value=""/>
+                <label for="rg" class="col-md-1">RG: </label>
+                <input type="text" id="rg" value="" th:field="*{rg}"/>
             </div>
 
             <div class="row">
-                <label for="bairro" class="col-md-1">Bairro: </label>
-                <input type="text" id="bairro" value=""/>
+                <label for="email" class="col-md-1">E-mail: </label>
+                <input type="text" id="email" value="" th:field="*{email}"/>
             </div>
 
             <div class="row">
-                <label for="cidade" class="col-md-1">Cidade: </label>
-                <input type="text" id="cidade" value=""/>
+                <label for="telefone" class="col-md-1">Telefone: </label>
+                <input type="text" id="telefone" value="" th:field="*{telefone}"/>
             </div>
 
+            <!--todo: senha-->
+            <!--<div class="row">-->
+                <!--<label for="senhaIntBank" class="col-md-1">Senha internet banking: </label>-->
+                <!--<input type="text" id="senhaIntBank" value=""/>-->
+            <!--</div>-->
+            <!--<div style="color:red">Colocar comportamento de confirmar senha</div>-->
+            <!--<div class="row some"> &lt;!&ndash; on change de senha aparece o campo &ndash;&gt;-->
+                <!--<label for="confSenha" class="col-md-1">Confirmar senha: </label>-->
+                <!--<input type="text" id="confSenha" value=""/>-->
+            <!--</div>-->
+        </div> <!-- fim de frmAbrirConta_1 -->
+
+
+        <div id="frmAbrirConta_2" class="some">
             <div class="row">
-                <label for="estado" class="col-md-1">Estado: </label>
-                <input type="text" id="estado" value=""/>
+                <h2>Endereço</h2>
+
+                <div class="row">
+                    <label for="cep" class="col-md-1">CEP: </label>
+                    <input type="text" id="cep" value=""/>
+                </div>
+                Deixar bloqueado outros campos enquanto cep não for preenchido
+
+                <div class="row">
+                    <label for="rua" class="col-md-1">Rua: </label>
+                    <input type="text" id="rua" value=""/>
+                </div>
+
+                <div class="row">
+                    <label for="numero" class="col-md-1">Número: </label>
+                    <input type="text" id="numero" value=""/>
+                </div>
+
+                <div class="row">
+                    <label for="complemento" class="col-md-1">Complemento: </label>
+                    <input type="text" id="complemento" value=""/>
+                </div>
+
+                <div class="row">
+                    <label for="bairro" class="col-md-1">Bairro: </label>
+                    <input type="text" id="bairro" value=""/>
+                </div>
+
+                <div class="row">
+                    <label for="cidade" class="col-md-1">Cidade: </label>
+                    <input type="text" id="cidade" value=""/>
+                </div>
+
+                <div class="row">
+                    <label for="estado" class="col-md-1">Estado: </label>
+                    <input type="text" id="estado" value=""/>
+                </div>
+
             </div>
-
-        </div>
-    </div> <!-- fim de frmAbrirConta_2 -->
+        </div> <!-- fim de frmAbrirConta_2 -->
 
 
-    <div id="frmAbrirConta_3" class="some">
-        <div class="row">
-            <h2>Imagens</h2>
+        <div id="frmAbrirConta_3" class="some">
             <div class="row">
-                <label for="ident" class="col-md-1">RG ou carteira de motorista: </label>
-                <input type="file" id="ident" name="pic" accept="image/*"/>
-            </div>
+                <h2>Imagens</h2>
+                <div class="row">
+                    <label for="ident" class="col-md-1">RG ou carteira de motorista: </label>
+                    <input type="file" id="ident" name="pic" accept="image/*"/>
+                </div>
 
+                <div class="row">
+                    <label for="perfil" class="col-md-1">Perfil: </label>
+                    <input type="file" id="perfil" name="pic" accept="image/*"/>
+                </div>
+
+                <div class="row">
+                    <label for="compResid" class="col-md-1">Comprovante de residencia: </label>
+                    <input type="file" id="compResid" name="pic" accept="image/*"/>
+                </div>
+            </div>
+        </div> <!-- fim de frmAbrirConta_3 -->
+
+
+        <div id="frmAbrirConta_4" class="some">
             <div class="row">
-                <label for="perfil" class="col-md-1">Perfil: </label>
-                <input type="file" id="perfil" name="pic" accept="image/*"/>
-            </div>
+                <h2>Finalização</h2>
+                <div class="row">
+                    <label for="rendMensal" class="col-md-1">Total rendimento mensal: </label>
+                    <input type="text" id="rendMensal" value=""/>
+                </div>
 
-            <div class="row">
-                <label for="compResid" class="col-md-1">Comprovante de residencia: </label>
-                <input type="file" id="compResid" name="pic" accept="image/*"/>
-            </div>
-        </div>
-    </div> <!-- fim de frmAbrirConta_3 -->
+                <div class="row">
+                    <label for="limiteCred" class="col-md-1">Maior limite de crédito que possui: </label>
+                    <input type="text" id="limiteCred" value=""/>
+                </div>
 
+                <div class="row">
+                    <label for="grauEscola" class="col-md-1">Grau de escolaridade: </label>
+                    <input type="text" id="grauEscola" value=""/>
+                </div>
 
-    <div id="frmAbrirConta_4" class="some">
-        <div class="row">
-            <h2>Finalização</h2>
-            <div class="row">
-                <label for="rendMensal" class="col-md-1">Total rendimento mensal: </label>
-                <input type="text" id="rendMensal" value=""/>
+                <div class="row">
+                    <label for="senhaConta" class="col-md-1">Senha internet banking: </label>
+                    <input type="text" id="senhaConta" value=""/>
+                </div>
+                <div style="color:red">Colocar comportamento de confirmar senha</div>
+                <div class="row some"> <!-- on change de senha aparece o campo -->
+                    <label for="confSenhaConta" class="col-md-1">Confirmar senha: </label>
+                    <input type="text" id="confSenhaConta" value=""/>
+                </div>
             </div>
+        </div> <!-- fim de frmAbrirConta_4 -->
 
-            <div class="row">
-                <label for="limiteCred" class="col-md-1">Maior limite de crédito que possui: </label>
-                <input type="text" id="limiteCred" value=""/>
-            </div>
-
-            <div class="row">
-                <label for="grauEscola" class="col-md-1">Grau de escolaridade: </label>
-                <input type="text" id="grauEscola" value=""/>
-            </div>
-
-            <div class="row">
-                <label for="senhaConta" class="col-md-1">Senha internet banking: </label>
-                <input type="text" id="senhaConta" value=""/>
-            </div>
-            <div style="color:red">Colocar comportamento de confirmar senha</div>
-            <div class="row some"> <!-- on change de senha aparece o campo -->
-                <label for="confSenhaConta" class="col-md-1">Confirmar senha: </label>
-                <input type="text" id="confSenhaConta" value=""/>
-            </div>
-        </div>
-    </div> <!-- fim de frmAbrirConta_4 -->
-
-    <hr/>
+        <hr/>
     </form>
 
     <div id="msgValidacaoCampos" class="msgErro">Validar campos on runtime</div>

@@ -69,7 +69,7 @@ public class AppController {
             return new ModelAndView("/home", model);
         }
 
-        model.addAttribute("usuario", loginForm.getUsuario());
+        model.addAttribute("user", userRepository.findByEmail(loginForm.getUsuario()) );
         return new ModelAndView("/abrir-conta", model);
 //        return new ModelAndView("redirect:/", model);
     }
