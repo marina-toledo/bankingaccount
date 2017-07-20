@@ -67,27 +67,26 @@ $(document).ready(function () {
             }
     );
 
-    // commitar no banco as mudanças
-    $('#salvar').click(
-            function () {
-                var dados;
-                dados = $("#email").val();
-                dados += $("#cep").val();
-                dados += $("#ident").val();
-                dados += $("#rendimento").val();
-                alert('Commitar no Banco de dados :' + dados);
-                // chamar ajax 
-                $("#msgSalvo").text("dados salvos em "+new Date().toUTCString());
-            }
-    );
-
-    // commitar no banco as mudanças
-    $('#finalizar').click(
-            function () {
-                alert('Commitar no Banco de dados também');
-                // chamar ajax analogo ao botao entrar
-            }
-    );
-
+//    // commitar no banco as mudanças
+//    $('#salvar').click(
+//            function () {
+//                var dados;
+//                dados = $("#email").val();
+//                dados += $("#cep").val();
+//                dados += $("#ident").val();
+//                dados += $("#rendimento").val();
+//                alert('Commitar no Banco de dados :' + dados);
+//                // chamar ajax
+//                $("#msgSalvo").text("dados salvos em "+new Date().toUTCString());
+//            }
+//    );
+//
+//    // commitar no banco as mudanças
+//    $('#finalizar').click(
+//            function () {
+//                alert('Commitar no Banco de dados também');
+//                // chamar ajax analogo ao botao entrar
+//            }
+//    );
 
 });

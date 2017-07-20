@@ -21,12 +21,13 @@
 <body>
 <div class="container">
 
-    <form id="frmAbrirConta" class="form col-md-12" action="#" th:action="@{/}" th:object="${user}" method="post">
+    <form id="frmAbrirConta" class="form col-md-12" action="#" th:action="@{/form}" th:object="${user}" method="post">
 
         <div id="frmAbrirConta_1">
 
             <h2>Abrir conta</h2>
 
+            <input type="hidden" id="id" value="" th:field="*{id}"/>
             <div class="row">
                 <label for="nomeCompleto" class="col-md-1">Nome completo: </label>
                 <input type="text" id="nomeCompleto" value="" th:field="*{nomeCompleto}"/>
@@ -54,13 +55,13 @@
 
             <!--todo: senha-->
             <!--<div class="row">-->
-                <!--<label for="senhaIntBank" class="col-md-1">Senha internet banking: </label>-->
-                <!--<input type="text" id="senhaIntBank" value=""/>-->
+            <!--<label for="senhaIntBank" class="col-md-1">Senha internet banking: </label>-->
+            <!--<input type="text" id="senhaIntBank" value=""/>-->
             <!--</div>-->
             <!--<div style="color:red">Colocar comportamento de confirmar senha</div>-->
             <!--<div class="row some"> &lt;!&ndash; on change de senha aparece o campo &ndash;&gt;-->
-                <!--<label for="confSenha" class="col-md-1">Confirmar senha: </label>-->
-                <!--<input type="text" id="confSenha" value=""/>-->
+            <!--<label for="confSenha" class="col-md-1">Confirmar senha: </label>-->
+            <!--<input type="text" id="confSenha" value=""/>-->
             <!--</div>-->
         </div> <!-- fim de frmAbrirConta_1 -->
 
@@ -161,17 +162,18 @@
         </div> <!-- fim de frmAbrirConta_4 -->
 
         <hr/>
+
+        <div id="msgValidacaoCampos" class="msgErro">Validar campos on runtime</div>
+
+        <div class="row">
+            <div id="msgStatus" class="text-left"></div>
+            <button type="submit" name="action" value="salvar">Salvar</button>
+            <button id="voltar" class="some">Voltar</button>
+            <button id="avancar">Avançar</button>
+            <button type="submit" name="action" value="finalizar">Finalizar</button>
+        </div>
     </form>
 
-    <div id="msgValidacaoCampos" class="msgErro">Validar campos on runtime</div>
-
-    <div class="row">
-        <div id="msgStatus" class="text-left"></div>
-        <button id="salvar">Salvar</button>
-        <button id="voltar" class="some">Voltar</button>
-        <button id="avancar">Avançar</button>
-        <button id="finalizar" class="some">Finalizar</button>
-    </div>
 
 </div> <!-- fecha container -->
 </body>

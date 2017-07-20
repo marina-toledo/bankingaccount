@@ -4,11 +4,13 @@ import javax.persistence.*;
 import java.util.Calendar;
 
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Created by marinatoledo on 19/02/17.
  */
 @Entity
+@Setter
 @Getter
 public class User {
 

@@ -1,5 +1,6 @@
 package com.code.bankingaccount.controller;
 
+import com.code.bankingaccount.entity.User;
 import com.code.bankingaccount.entity.UserRepository;
 import com.code.bankingaccount.form.LoginForm;
 import com.code.bankingaccount.service.AccountService;
@@ -93,23 +94,18 @@ public class AppController {
 //    ------------------------------
 //    Requests vindo da pagina ABRIR-CONTA
 //    ------------------------------
-//    @PostMapping("/abrir-conta")
-//    public String abrir( String usuario) {
-//        Logger.getAnonymousLogger().info("Abrindo conta bancária.");
-//
-//        ModelMap model = new ModelMap();
-//
-//        model.addAttribute("usuario", userRepository.findByEmail(usuario));
-//        return "abrir-conta";
-//    }
+    @PostMapping(value="/form", params="action=salvar")
+    public String save(@ModelAttribute User user) {
+        userRepository.save(user);
+        return "abrir-conta";
+    }
 
-    //    ------------------------------
+//    ------------------------------
 //    Requests vindo da pagina MENUFINAL
 //    ------------------------------
     @RequestMapping("/menuFinal")
     public String irMenuFinal() {
         Logger.getAnonymousLogger().info("Indo para o menu final.");
-
 //    public String irMenuFinal(@RequestParam(value="usuario") String usuario, @RequestParam(value="senha") String senha, Model model) {
         return "menuFinal";
     }
